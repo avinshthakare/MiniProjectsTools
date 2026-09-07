@@ -41,9 +41,9 @@ The following shortcuts work globally across Windows while the tool is running (
 
 ## How to Set Up & Run
 
-1. **Save the File:** Ensure the script code is saved as a batch file (for example, `ScreenCaptureToWord.bat`).
+1. **Save the File:** Ensure the script code is saved as a batch file (for example, `Doc Snapper Pro Studio.bat`).
 2. **Open Word (Optional):** You can open an existing Word document beforehand, or let the tool launch a fresh one automatically.
-3. **Launch the Tool:** Double-click `ScreenCaptureToWord.bat`.
+3. **Launch the Tool:** Double-click `Doc Snapper Pro Studio.bat`.
 * A command prompt launcher will flash briefly, followed by the **Doc Snapper Pro Studio** dashboard window.
 
 
