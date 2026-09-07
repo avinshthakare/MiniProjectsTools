@@ -77,3 +77,39 @@ The following hotkeys function system-wide, even when the toolbar is minimized t
 * **Script window closes immediately on error:** Launch the script from an already open `cmd.exe` terminal window to review any local PowerShell execution policy blocks.
 * **PDF Export Fails:** The target Word document must be saved to your local drive at least once as a `.docx` before Word can generate an export path.
 * **Hotkeys not firing:** Confirm that another background application (e.g., Discord, GeForce Experience, AMD Radeon Software, or Snipping Tool) does not have exclusive locks on `Ctrl + Shift + S/W/R`.
+
+  From a **technical code safety** perspective, the script is clean and safe:
+
+* **No external network calls:** It makes zero internet requests, downloads nothing, and does not transmit data or images to any server.
+* **No malicious binaries or third-party executables:** It relies entirely on standard, built-in Windows components (`powershell.exe`, `.NET Framework`, `System.Drawing`, and standard Windows `user32.dll` APIs).
+* **No permanent disk footprint:** It streams images directly into Word through the system clipboard, creating no hidden files or temp caches.
+
+However, using it in an **office/corporate environment** involves important IT and workplace considerations:
+
+---
+
+### 1. Technical & IT Security Considerations
+
+* **`-ExecutionPolicy Bypass`:**
+The launcher command contains `-ExecutionPolicy Bypass`. Many corporate IT departments enforce strict PowerShell Execution Policies via Group Policy (GPO) or Endpoint Detection and Response (EDR) software (e.g., CrowdStrike, Defender for Endpoint, SentinelOne).
+* If your company blocks unsigned scripts, the batch file will fail to run or trigger a security alert for IT review.
+
+
+* **Win32 API Injections (`Add-Type` / C# Compilation):**
+The script compiles a tiny snippet of C# on the fly to register global hotkeys (`RegisterHotKey`) and read the foreground window. Some corporate antivirus software flags on-the-fly C# compilation from a batch file as suspicious script behavior.
+
+---
+
+### 2. Corporate Policy & Compliance Considerations
+
+* **Data Loss Prevention (DLP) & Confidentiality:**
+If you work with sensitive customer data, personally identifiable information (PII), medical records, or banking information, taking and storing screenshots inside Word documents may fall under strict internal documentation policies. Be cautious when capturing areas displaying sensitive or proprietary data.
+* **Unapproved Software Policies:**
+Most organizations have Acceptable Use Policies (AUP) stating that all scripts, macros, and automation tools must be approved by the IT/Security department before use on company-managed devices.
+
+---
+
+### Recommended Best Practices for Your Office
+
+1. **Test on a Non-Production Device (or ask IT):** If your IT team requires approval for internal macros and automation tools, share the script with them. Because the code is plain text and transparent, IT security teams can easily inspect and verify that it contains no malicious activity.
+2. **Be Mindful of Burst Mode:** Avoid leaving **Burst Mode** on unattended, as it will capture your desktop periodically regardless of what window or sensitive notification pops up on your screen.
