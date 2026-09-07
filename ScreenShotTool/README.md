@@ -1,90 +1,79 @@
-# Doc Snapper
+# DocSnapper Mini
 
-A lightweight, zero-dependency Windows automation tool packaged inside a single hybrid `.bat` file. It provides an always-on-top dashboard and system-wide hotkeys to capture screens, windows, or custom snipped regions, and immediately pastes them sequentially into Microsoft Word documents without saving temporary image files to disk.
+A high-speed, zero-install screen capture assistant for Windows packaged in a standalone hybrid `.bat` file. DocSnapper Mini floats as a dark-mode mini-toolbar that captures screens, active application windows, or freeform snipped regions, automatically streaming the images directly into Microsoft Word via the clipboard—without saving intermediate image files to disk.
 
 ---
 
 ## Key Features
 
-* **Direct-to-Word Memory Streaming:** Captures are processed in memory and pasted directly into Microsoft Word documents via the clipboard, leaving no leftover image files on your drive.
-* **Global Hotkey Interceptors:** Triggers screen captures from any active program or browser without needing to click the tool window.
-* **Document Targeting:** Automatically detects all open Microsoft Word documents. Select your target document from a dropdown menu, or let the tool open a new document automatically.
-* **Visual Pointer & Highlighter:** Captures the hardware mouse cursor and optionally draws a transparent red focus ring around the pointer tip to highlight clicked or hovered UI elements.
-* **Multi-Monitor Awareness:** Automatically enumerates connected displays and lets you target primary, secondary, or tertiary displays.
-* **Burst Mode Automation:** Snaps and pastes on a repeating 5-second loop for hands-free documentation of long processes.
-* **One-Click Undo:** Remove the most recently pasted screenshot from the Word document without switching windows.
-* **Direct PDF Export:** Converts and saves the active Word document directly to PDF format alongside the original file.
-* **System Tray Mode:** Minimizes cleanly into the Windows Taskbar notification area (System Tray) while keeping all global hotkeys fully active.
+* **Minimal Floating Toolbar:** An ultra-compact dark toolbar (approx. 260 × 130 px) pinned to the bottom-right corner of your primary screen.
+* **Direct-to-Memory Pasting:** Screenshots bypass hard disk writes entirely, copying directly to the system clipboard and inserting into Word's active document stream.
+* **Smart Image Formatting:** Automatically fits wide captures to standard document margins (max width 450 pt), centers the image, adds a clean 1 pt gray outline border, and creates sequential line breaks.
+* **Word Document Targeting:** Routes captures to any currently open Word document chosen from a live dropdown, or automatically creates a new document if Word is closed.
+* **Multi-Monitor Aware:** Enumerates all attached displays, allowing you to choose which monitor to snap when in full-screen capture mode.
+* **Hardware Mouse & Highlight Ring:** Optionally records the hardware mouse cursor in place, complete with an accent red halo to highlight clicked UI targets.
+* **Hands-Free Burst Mode:** Automates continuous screenshot capture on a repeating 5-second loop.
+* **Instant Undo:** Deletes the most recently pasted image shape from the target Word document without switching windows.
+* **One-Click PDF Export:** Automatically compiles and exports the active document into a `.pdf` file alongside your `.docx` source.
+* **System Tray Minimization:** Hides the toolbar to the Windows notification tray near the system clock while keeping global hotkeys active.
 
 ---
 
 ## Keyboard Shortcuts
 
-The following shortcuts work globally across Windows while the tool is running (even when minimized to the system tray):
+The following hotkeys function system-wide, even when the toolbar is minimized to the system tray:
 
-| Shortcut | Mode | Description |
+| Shortcut | Capture Type | Behavior |
 | --- | --- | --- |
-| `Ctrl` + `Shift` + `S` | **Selected Monitor** | Captures the entire monitor chosen in the display selector. |
-| `Ctrl` + `Shift` + `W` | **Active Window** | Captures only the focused window or application in the foreground. |
-| `Ctrl` + `Shift` + `R` | **Drag Region** | Opens a transparent crosshair overlay to click-and-drag a custom bounding box. |
+| `Ctrl` + `Shift` + `S` | **Selected Display** | Captures the full screen of the monitor selected in Options. |
+| `Ctrl` + `Shift` + `W` | **Active Window** | Captures only the foreground window/application in focus. |
+| `Ctrl` + `Shift` + `R` | **Region Snip** | Displays a transparent crosshair overlay to drag a custom bounding box. |
 
 ---
 
 ## System Requirements
 
-* **Operating System:** Windows 10 or Windows 11 (64-bit / 32-bit).
-* **Word Processor:** Microsoft Word (Desktop Edition: Office 2013, 2016, 2019, 2021, or Microsoft 365).
-* **Runtime:** Built-in Windows PowerShell 5.1+ and .NET Framework 4.5+ (pre-installed on all modern Windows versions).
-* **Administrative Privileges:** Not required. Runs entirely in user space.
+* **Operating System:** Windows 10 or Windows 11.
+* **Office Suite:** Microsoft Word desktop installation (Office 2013 through 2021, or Microsoft 365).
+* **Dependencies:** None. Powered by native Windows PowerShell 5.1 and .NET Framework (pre-installed on Windows).
+* **Permissions:** Runs in standard user space (Administrator rights not required).
 
 ---
 
-## How to Set Up & Run
+## Installation & Setup
 
-1. **Save the File:** Ensure the script code is saved as a batch file (for example, `Doc Snapper.bat`).
-2. **Open Word (Optional):** You can open an existing Word document beforehand, or let the tool launch a fresh one automatically.
-3. **Launch the Tool:** Double-click `Doc Snapper.bat`.
-* A command prompt launcher will flash briefly, followed by the **Doc Snapper Pro Studio** dashboard window.
-
-
-4. **Targeting Documents:**
-* If you have multiple Word files open, click the **Target Word Document** drop-down to route screenshots to a specific document.
-* Click **`R`** at any time to refresh the list if you opened or closed documents while the tool was running.
+1. **Save Script:** Save the script code as `ScreenCaptureToWord.bat`.
+2. **File Encoding:** Save the file with **ANSI** or **UTF-8 (without BOM)** encoding to ensure command prompt syntax parses cleanly.
+3. **Launch:** Double-click `ScreenCaptureToWord.bat`.
+* A command prompt window will initialize and disappear, followed by the floating mini-toolbar in the lower-right corner of your desktop.
 
 
 
 ---
 
-## Dashboard Reference
+## Interface Reference
 
-* **Target Word Document & [R]:** Dropdown list of running Word documents. The `R` button updates the list.
-* **Display Monitor:** Selects which screen to snapshot when running in **Full Screen / Selected Monitor** mode.
-* **Capture Area Group:** Sets the behavior used when clicking the **Snap & Paste** dashboard button.
-* **Draw Mouse Cursor:** Includes the actual Windows pointer icon in the captured screenshot.
-* **Highlight Cursor (Red Ring):** Draws an accent halo around the pointer tip to emphasize focus.
-* **Snap & Paste:** Executes the capture action based on current settings and appends it to Word.
-* **Undo Last Paste:** Deletes the most recent inline image inserted into the selected Word document.
-* **Burst Mode (ON / OFF):** Toggles an automated 5-second repeating capture loop.
-* **Save Word Doc:** Triggers a native document save on the targeted Word file.
-* **Export to PDF:** Automatically compiles and exports the active document into a `.pdf` file in the same directory where the `.docx` is saved.
-* **Minimize to System Tray:** Hides the dashboard interface from the screen and taskbar. Double-click the tray icon near the Windows system clock to bring it back.
+### Main Toolbar
 
----
+* **Snap and Paste:** Triggers an immediate screen capture based on the active monitor and appends it to Word.
+* **OPT:** Opens the Options flyout dialog to adjust targeting and annotation behaviors.
+* **Undo:** Deletes the most recent image shape from the active document.
+* **Burst:** Toggles the automatic 5-second capture interval (turns red when active).
+* **Save:** Sends a direct save command to the targeted Microsoft Word document.
+* **PDF:** Exports the current Word document directly as a `.pdf` file in the same local folder.
+* **_ (Minimize):** Sends the tool to the Windows system tray. Double-click the tray icon to restore.
 
-## Image Formatting Specifications
+### Options Dialog (`OPT`)
 
-Each image inserted into Microsoft Word is automatically formatted according to these rules:
-
-* **Placement:** Appended sequentially at the bottom (`wdCollapseEnd`) of the active document.
-* **Width Constraint:** If the image width exceeds 450 points (~6.25 inches), it is proportionally scaled down so it stays within standard Letter/A4 margin boundaries without clipping.
-* **Alignment:** Centered within the paragraph block.
-* **Border Line:** A subtle, clean 1 pt border (`#CCCCCC`) is applied to provide contrast against light backgrounds.
-* **Spacing:** A blank paragraph spacing block is inserted immediately after the shape.
+* **Target Word Doc:** Dropdown menu listing all running Word document files. Select the document where captures should be placed.
+* **Screen Monitor:** Selects which monitor is captured when using the full-screen mode.
+* **Capture Mouse Cursor:** Enables or disables drawing the pointer on the screenshot.
+* **Draw Red Halo Ring:** Toggles the translucent red highlight circle centered around the pointer tip.
 
 ---
 
 ## Troubleshooting
 
-* **Status displays "Word is not running!":** Ensure Microsoft Word desktop application is installed and not blocked by background sandbox restrictions.
-* **Global hotkey does not respond:** Another background application (e.g., streaming tools, GPU overlays, or other screen-capture software) may already have claimed the shortcut combination (`Ctrl + Shift + S/W/R`).
-* **PDF Export Fails:** The Word document must be saved to your local disk at least once as a `.docx` file before it can be exported as a `.pdf`.
+* **Script window closes immediately on error:** Launch the script from an already open `cmd.exe` terminal window to review any local PowerShell execution policy blocks.
+* **PDF Export Fails:** The target Word document must be saved to your local drive at least once as a `.docx` before Word can generate an export path.
+* **Hotkeys not firing:** Confirm that another background application (e.g., Discord, GeForce Experience, AMD Radeon Software, or Snipping Tool) does not have exclusive locks on `Ctrl + Shift + S/W/R`.
